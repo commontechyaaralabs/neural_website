@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  /* TheNeural palette from Colour palette.png */
+  --background: #111315; /* near-black background */
+  --foreground: #e6f5c2; /* light green used for text */
+  --neural-green: #d8ff6e; /* neon/light green accent */
+  --neural-violet: #b86bdd; /* violet accent */
+  --muted: #d9d7e1; /* light gray for subtle text */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-neural-green: var(--neural-green);
+  --color-neural-violet: var(--neural-violet);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Force dark aesthetic; do not auto-toggle */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.neural-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.neural-accent {
+  color: var(--neural-green);
+}
+
+.neural-heading {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.neural-nav a {
+  color: var(--muted);
+}
+.neural-nav a::after {
+  content: " •";
+  color: var(--neural-green);
+}
+.neural-nav a:last-child::after { content: ""; }
