@@ -50,29 +50,26 @@ export default function Home() {
 
   return (
     <div>
-      {/* Header */}
-      <FadeIn delay={0.2}>
-        <header className="neural-container flex items-center justify-between py-4">
-          <div className="flex items-center gap-3">
-            {/* Logo space - empty but maintains layout */}
-          </div>
-          <nav className="neural-nav hidden md:flex items-center gap-6 text-lg font-semibold">
-            <AnimatedLink href="#story" className="neural-nav-link">Our Story</AnimatedLink>
-            <AnimatedLink href="#thought" className="neural-nav-link">Thought Leadership</AnimatedLink>
-            <AnimatedLink href="#community" className="neural-nav-link">Community</AnimatedLink>
-            <AnimatedLink href="#activities" className="neural-nav-link">Activities</AnimatedLink>
+      {/* Fixed Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-neural-violet/20">
+        <div className="neural-container flex items-center justify-center py-4">
+          <nav className="neural-nav flex items-center gap-8 text-lg font-semibold">
+            <a href="#story" className="neural-nav-link">Our Story</a>
+            <a href="#thought" className="neural-nav-link">Thought Leadership</a>
+            <a href="#community" className="neural-nav-link">Community</a>
+            <a href="#activities" className="neural-nav-link">Activities</a>
           </nav>
-        </header>
-      </FadeIn>
+        </div>
+      </header>
 
 
       {/* Hero Section */}
       <section className="relative">
         <div className="neural-container grid md:grid-cols-2 gap-8 items-center py-14">
-          <div className="order-2 md:order-1">
+          <div className="order-2 md:order-1 flex flex-col justify-center items-start h-full">
             {/* TheNeural Logo */}
             <FadeIn delay={0.1}>
-              <div className="mb-12 -mt-80">
+              <div className="mb-12 -mt-70">
                 <Image
                   src="/TheNeuralwriting and logo.svg"
                   alt="The Neural"
@@ -102,7 +99,7 @@ export default function Home() {
               </p>
             </BounceIn>
           </div>
-          <div className="order-1 md:order-2 -mt-16">
+          <div className="order-1 md:order-2 -mt-16 flex justify-center items-center h-full">
             <Image
               src="/hero_section_image.webp"
               alt="People collaborating with AI"
