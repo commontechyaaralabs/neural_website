@@ -15,8 +15,8 @@
   --color-neural-green: var(--neural-green);
   --color-neural-violet: var(--neural-violet);
   --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-ibm-plex-mono);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 /* Force dark aesthetic; do not auto-toggle */
@@ -24,11 +24,27 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  scroll-padding-top: 0;
+}
+
+/* Ensure page starts at top */
+html, body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
 }
 
 .neural-container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -44,9 +60,101 @@ body {
 
 .neural-nav a {
   color: var(--muted);
+  transition: all 0.3s ease;
 }
 .neural-nav a::after {
   content: " •";
   color: var(--neural-green);
+  transition: all 0.3s ease;
 }
 .neural-nav a:last-child::after { content: ""; }
+
+/* Enhanced hover effects */
+.neural-nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neural-nav-link:hover {
+  color: var(--neural-green);
+  transform: translateY(-2px);
+}
+
+/* Card hover enhancements */
+.hover-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(184, 107, 221, 0.2);
+}
+
+/* Button enhancements */
+.btn-primary {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(184, 107, 221, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Image hover effects */
+.hover-image {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.hover-image:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Smooth scrolling - moved to top */
+
+/* Focus states */
+input:focus, button:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: var(--neural-violet);
+  ring-opacity: 0.5;
+}
+
+/* Neural Logo Styling */
+.neural-logo {
+  filter: brightness(1.1);
+  transition: all 0.3s ease;
+}
+
+.neural-logo:hover {
+  filter: brightness(1.3);
+  transform: scale(1.02);
+}
+
+/* Floating logo styles */
+.floating-logo {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(184, 107, 221, 0.3));
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
