@@ -9,7 +9,8 @@
   --muted: #d9d7e1; /* light gray for subtle text */
 }
 
-@theme inline {
+/* Custom CSS variables for Tailwind */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-neural-green: var(--neural-green);
@@ -122,9 +123,8 @@ html, body {
 /* Focus states */
 input:focus, button:focus {
   outline: none;
-  ring: 2px;
-  ring-color: var(--neural-violet);
-  ring-opacity: 0.5;
+  box-shadow: 0 0 0 2px var(--neural-violet);
+  opacity: 0.5;
 }
 
 /* Neural Logo Styling */
