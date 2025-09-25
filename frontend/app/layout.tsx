@@ -61,6 +61,14 @@ const ibmPlexMono = localFont({
 export const metadata: Metadata = {
   title: "TheNeural",
   description: "Where Humans Meet AI",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/Neural Brand Mark-Light Green.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/Neural Brand Mark-Light Green.png",
+  },
 };
 
 export default function RootLayout({
