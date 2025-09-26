@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { useScrollTriggeredAnimation } from "../src/hooks/useScrollAnimation";
 
 // Base animation variants
 const fadeInUp = {
@@ -72,8 +73,11 @@ interface MotionWrapperProps {
 }
 
 export function FadeIn({ children, className = "", delay = 0, duration = 0.2 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 3.0
+  });
 
   return (
     <motion.div
@@ -84,7 +88,11 @@ export function FadeIn({ children, className = "", delay = 0, duration = 0.2 }: 
         hidden: { opacity: 0 },
         visible: { 
           opacity: 1,
-          transition: { duration, delay, ease: "easeOut" }
+          transition: { 
+            duration: getAnimationDuration() || duration, 
+            delay: getAnimationDelay() + delay, 
+            ease: "easeOut" 
+          }
         }
       }}
       className={className}
@@ -95,8 +103,11 @@ export function FadeIn({ children, className = "", delay = 0, duration = 0.2 }: 
 }
 
 export function SlideUp({ children, className = "", delay = 0, duration = 0.2 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 2.5
+  });
 
   return (
     <motion.div
@@ -108,7 +119,11 @@ export function SlideUp({ children, className = "", delay = 0, duration = 0.2 }:
         visible: { 
           opacity: 1, 
           y: 0,
-          transition: { duration, delay, ease: "easeOut" }
+          transition: { 
+            duration: getAnimationDuration() || duration, 
+            delay: getAnimationDelay() + delay, 
+            ease: "easeOut" 
+          }
         }
       }}
       className={className}
@@ -119,8 +134,11 @@ export function SlideUp({ children, className = "", delay = 0, duration = 0.2 }:
 }
 
 export function SlideInLeft({ children, className = "", delay = 0, duration = 0.6 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 2.0
+  });
 
   return (
     <motion.div
@@ -128,7 +146,11 @@ export function SlideInLeft({ children, className = "", delay = 0, duration = 0.
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={fadeInLeft}
-      transition={{ duration: duration * 0.5, delay, ease: "easeOut" }}
+      transition={{ 
+        duration: (getAnimationDuration() || duration) * 0.5, 
+        delay: getAnimationDelay() + delay, 
+        ease: "easeOut" 
+      }}
       className={className}
     >
       {children}
@@ -137,8 +159,11 @@ export function SlideInLeft({ children, className = "", delay = 0, duration = 0.
 }
 
 export function SlideInRight({ children, className = "", delay = 0, duration = 0.6 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 2.0
+  });
 
   return (
     <motion.div
@@ -146,7 +171,11 @@ export function SlideInRight({ children, className = "", delay = 0, duration = 0
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={fadeInRight}
-      transition={{ duration: duration * 0.5, delay, ease: "easeOut" }}
+      transition={{ 
+        duration: (getAnimationDuration() || duration) * 0.5, 
+        delay: getAnimationDelay() + delay, 
+        ease: "easeOut" 
+      }}
       className={className}
     >
       {children}
@@ -155,8 +184,11 @@ export function SlideInRight({ children, className = "", delay = 0, duration = 0
 }
 
 export function ScaleIn({ children, className = "", delay = 0, duration = 0.5 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 2.8
+  });
 
   return (
     <motion.div
@@ -164,7 +196,11 @@ export function ScaleIn({ children, className = "", delay = 0, duration = 0.5 }:
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={scaleIn}
-      transition={{ duration: duration * 0.5, delay, ease: "easeOut" }}
+      transition={{ 
+        duration: (getAnimationDuration() || duration) * 0.5, 
+        delay: getAnimationDelay() + delay, 
+        ease: "easeOut" 
+      }}
       className={className}
     >
       {children}
@@ -175,8 +211,11 @@ export function ScaleIn({ children, className = "", delay = 0, duration = 0.5 }:
 // HeroImageSlide component removed as per user request
 
 export function SlideTowardsCenter({ children, className = "", delay = 0 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 1.8
+  });
 
   return (
     <motion.div
@@ -184,7 +223,10 @@ export function SlideTowardsCenter({ children, className = "", delay = 0 }: Moti
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={slideTowardsCenter}
-      transition={{ duration: 0.7, delay }}
+      transition={{ 
+        duration: getAnimationDuration() || 0.7, 
+        delay: getAnimationDelay() + delay 
+      }}
       className={className}
     >
       {children}
@@ -193,8 +235,11 @@ export function SlideTowardsCenter({ children, className = "", delay = 0 }: Moti
 }
 
 export function SlideTowardsCenterRight({ children, className = "", delay = 0 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 1.8
+  });
 
   return (
     <motion.div
@@ -202,7 +247,10 @@ export function SlideTowardsCenterRight({ children, className = "", delay = 0 }:
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={slideTowardsCenterRight}
-      transition={{ duration: 0.7, delay }}
+      transition={{ 
+        duration: getAnimationDuration() || 0.7, 
+        delay: getAnimationDelay() + delay 
+      }}
       className={className}
     >
       {children}
@@ -224,8 +272,11 @@ export function StaggerChildren({
   staggerDelay = 0.1, 
   childDelay = 0 
 }: StaggerChildrenProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 1.5
+  });
 
   return (
     <motion.div
@@ -237,8 +288,8 @@ export function StaggerChildren({
         visible: {
           opacity: 1,
           transition: {
-            staggerChildren: staggerDelay,
-            delayChildren: childDelay
+            staggerChildren: Math.max(0.05, staggerDelay * (getAnimationDuration() || 1)),
+            delayChildren: getAnimationDelay() + childDelay
           }
         }
       }}
@@ -271,8 +322,11 @@ export function StaggerChild({ children, className = "", direction = "up" }: Mot
 
 // Letter spacing animation for headings
 export function AnimatedHeading({ children, className = "", delay = 0 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLHeadingElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 2.8
+  });
 
   return (
     <motion.h1
@@ -285,8 +339,8 @@ export function AnimatedHeading({ children, className = "", delay = 0 }: MotionW
           opacity: 1, 
           letterSpacing: "-0.02em",
           transition: { 
-            duration: 0.3, 
-            delay,
+            duration: getAnimationDuration() || 0.3, 
+            delay: getAnimationDelay() + delay,
             ease: "easeOut" 
           }
         }
@@ -300,8 +354,11 @@ export function AnimatedHeading({ children, className = "", delay = 0 }: MotionW
 
 // Bounce animation for CTA elements
 export function BounceIn({ children, className = "", delay = 0 }: MotionWrapperProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const { ref, isInView, getAnimationDelay, getAnimationDuration } = useScrollTriggeredAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    rootMargin: "-50px",
+    scrollSpeedMultiplier: 3.2
+  });
 
   return (
     <motion.div
@@ -314,8 +371,8 @@ export function BounceIn({ children, className = "", delay = 0 }: MotionWrapperP
           opacity: 1, 
           scale: 1,
           transition: { 
-            duration: 0.2, 
-            delay,
+            duration: getAnimationDuration() || 0.2, 
+            delay: getAnimationDelay() + delay,
             type: "spring",
             stiffness: 400,
             damping: 25

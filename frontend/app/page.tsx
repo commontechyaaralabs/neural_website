@@ -120,19 +120,22 @@ export default function Home() {
     <div>
       {/* Fixed Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-neural-violet/20">
-        <div className={`neural-container flex items-center justify-center ${
-          !isClient ? 'py-0 px-0' : (isMobile ? 'py-0 px-0' : 'py-2')
+        <div className={`neural-container flex items-center justify-end ${
+          !isClient ? 'py-2 px-0' : (isMobile ? 'py-2 px-0' : 'py-3')
         }`}>
-          <nav className={`neural-nav font-semibold ${
+          <nav className={`neural-nav font-medium ${
             !isClient 
-              ? 'flex items-center justify-center gap-0.5 text-[10px]' 
+              ? 'flex items-center text-base mr-8' 
               : (isMobile 
-                ? 'flex items-center justify-center gap-0.5 text-[10px]' 
-                : 'flex items-center gap-8 text-lg')
+                ? 'flex items-center text-base mr-10' 
+                : 'flex items-center text-base mr-15')
           }`}>
             <a href="#story" className="neural-nav-link">Our Story</a>
+            <span className="neural-nav-dot">•</span>
             <a href="#thought" className="neural-nav-link">Thought Leadership</a>
+            <span className="neural-nav-dot">•</span>
             <a href="#community" className="neural-nav-link">Community</a>
+            <span className="neural-nav-dot">•</span>
             <a href="#activities" className="neural-nav-link">Activities</a>
           </nav>
         </div>
@@ -140,63 +143,73 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <section className="relative">
-        <div className="neural-container grid md:grid-cols-2 gap-8 items-center py-14">
-          <div className={`flex flex-col justify-center items-start h-full ${
-            isMobile ? 'order-1' : 'order-2 md:order-1'
-          }`}>
+      <section className="relative h-screen flex items-center">
+        <div className="neural-container grid md:grid-cols-[1fr_1.2fr] gap-8 items-center py-14">
+          {/* Left Side - Text Content */}
+          <div className="flex flex-col justify-center items-start h-full ml-25">
             {/* TheNeural Logo */}
-            <FadeIn delay={0.1}>
-              <div className={`mb-12 ${isMobile ? '-mt-20' : '-mt-70'}`}>
-                <Image
-                  src="/TheNeuralwriting and logo.svg"
-                  alt="The Neural"
-                  width={isMobile ? 150 : 200}
-                  height={isMobile ? 38 : 50}
-                  className="neural-logo"
-                  style={{ width: 'auto', height: 'auto' }}
-                />
-              </div>
-            </FadeIn>
+            {/* TheNeural Logo - Absolutely positioned */}
+            <div className="absolute top-0 left-50 z-10 scale-80"> {/* 1.5x scale */}
+              <Image
+                src="/TheNeuralwriting and logo.svg"
+                alt="The Neural"
+                width={isMobile ? 150 : 200}
+                height={isMobile ? 38 : 50}
+                className="neural-logo"
+                style={{ width: 'auto', height: 'auto' }}
+              />
+            </div>
             
             <AnimatedHeading 
-              className={`neural-heading leading-tight neural-accent ${
+              className={`neural-heading leading-tight neural-accent mb-6 mt-50 ${
                 isMobile 
-                  ? 'text-[24px] sm:text-[28px] whitespace-normal' 
-                  : 'text-[32px] sm:text-[40px] md:text-[56px] whitespace-nowrap'
+                  ? 'text-[20px] sm:text-[24px]' 
+                  : 'text-[24px] sm:text-[28px] md:text-[40px]'
               }`}
               delay={0.3}
             >
               Where Humans Meet AI
             </AnimatedHeading>
+            
             <SlideUp delay={0.6}>
-              <p className={`mt-6 text-[color:var(--muted)] ${
+              <p className={`text-[color:var(--muted)] mb-8 ${
                 isMobile 
                   ? 'text-sm max-w-full' 
                   : 'text-base md:text-lg max-w-[54ch]'
               }`}>
                 Level up in AI with an exclusive platform empowering a future where AI
-                augments human potential. Together, we build the ne xt big things with
+                augments human potential. Together, we build the next big things with
                 and in AI from India.
               </p>
             </SlideUp>
+            
             <BounceIn delay={0.4}>
-              <p className={`mt-8 neural-accent font-semibold ${
+              <h2 className={`neural-accent font-semibold mb-6 ${
                 isMobile ? 'text-lg' : 'text-xl md:text-2xl'
               }`}>
+                Convert your AI Ambition to Action
+              </h2>
+              <a
+                href="https://activate25.theneural.ai/TheNeural"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-block bg-neural-violet text-white rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 ${
+                  isMobile ? 'px-6 py-3 text-base' : 'px-8 py-4 text-lg'
+                }`}
+              >
                 Join us Activate-Nov 4,Bangalore
-              </p>
+              </a>
             </BounceIn>
           </div>
-          <div className={`flex justify-center items-center h-full ${
-            isMobile ? 'order-2 -mt-8' : 'order-1 md:order-2 -mt-16'
-          }`}>
+          
+          {/* Right Side - Image */}
+          <div className="flex justify-center items-center h-full overflow-visible">
             <Image
               src="/hero_section_image.webp"
               alt="People collaborating with AI"
-              width={800}
-              height={600}
-              className="w-full h-auto"
+              width={2000}
+              height={1333}
+              className="w-full h-auto scale-125 mt-50"
               priority
             />
           </div>
@@ -204,7 +217,7 @@ export default function Home() {
       </section>
 
       {/* Story Sections */}
-      <section id="story" className="neural-container py-16">
+      <section id="story" className="neural-container pt-90 pb-16 ml-25">
         <div className="relative grid md:grid-cols-2 gap-16 items-stretch">
           {/* Left Story Card */}
           <SlideTowardsCenter delay={0.1}>
@@ -266,17 +279,20 @@ export default function Home() {
 
       {/* Thought Leadership Section */}
       <section id="thought" className="neural-container pt-16 pb-2">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 items-center ml-25">
           <SlideInLeft delay={0.2}>
             <div>
-              <AnimatedHeading 
-                className={`neural-heading neural-accent mb-8 ${
-                  isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
-                }`}
-                delay={0.4}
-              >
-                Thought Leadership Hub
-              </AnimatedHeading>
+                <AnimatedHeading 
+                  className={`neural-heading mb-8 ${
+                    isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
+                  }`}
+                  delay={0.4}
+                >
+                  <span style={{ color: '#d8ff6e' }}>
+                    Thought<br />
+                    Leadership Hub
+                  </span>
+                </AnimatedHeading>
               <SlideUp delay={0.6}>
                 <p className={`text-[color:var(--muted)] leading-relaxed mb-8 ${
                   isMobile ? 'text-sm' : 'text-lg'
@@ -308,7 +324,7 @@ export default function Home() {
       {/* Who is on TheNeural Section */}
       <section id="community" className={`neural-container pt-0 ${
         isMobile ? 'pb-0' : 'pb-12'
-      }`}>
+      } ml-25`}>
         <div className="relative flex items-center justify-center">
           <AnimatedNeuralSVG />
         </div>
@@ -317,13 +333,18 @@ export default function Home() {
       {/* Human Neural Network Section */}
       <section className={`neural-container ${
         isMobile ? 'pt-4 pb-16' : 'py-16'
-      }`}>
+      } ml-25`}>
         <SlideUp delay={0.1}>
-          <h2 className={`neural-heading neural-accent text-center mb-16 ${
+          <h2 className={`neural-heading neural-accent text-center mb-4 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
           }`}>
             Human Neural Network
           </h2>
+          <h3 className={`text-center font-semibold mb-16 ${
+            isMobile ? 'text-lg' : 'text-2xl md:text-3xl'
+          }`} style={{ color: '#e6f5c2' }}>
+            Volunteers and Advisors
+          </h3>
         </SlideUp>
         
         <StaggerChildren staggerDelay={0.1} childDelay={0.05}>
@@ -464,7 +485,7 @@ export default function Home() {
       {/* Meet the Team Section */}
       <section className={`neural-container ${
         isMobile ? 'pt-4 pb-16' : 'py-16'
-      }`}>
+      } ml-25`}>
         <SlideUp delay={0.1}>
           <h2 className={`neural-heading neural-accent text-center mb-16 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
@@ -587,7 +608,7 @@ export default function Home() {
       </section>
 
       {/* Upcoming Activities Section */}
-      <section id="activities" className="neural-container py-16">
+      <section id="activities" className="neural-container py-16 ml-25">
         <SlideUp delay={0.2}>
           <h2 className={`neural-heading neural-accent mb-16 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
