@@ -120,51 +120,79 @@ export default function Home() {
     <div>
       {/* Fixed Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-neural-violet/20">
-        <div className={`neural-container flex items-center justify-end ${
-          !isClient ? 'py-2 px-0' : (isMobile ? 'py-2 px-0' : 'py-3')
+        <div className={`neural-container ${
+          !isClient ? 'py-1 px-2' : (isMobile ? 'py-1 px-2' : 'py-3 px-4')
         }`}>
-          <nav className={`neural-nav font-medium ${
-            !isClient 
-              ? 'flex items-center text-base mr-8' 
-              : (isMobile 
-                ? 'flex items-center text-base mr-10' 
-                : 'flex items-center text-base mr-15')
-          }`}>
-            <a href="#story" className="neural-nav-link">Our Story</a>
-            <span className="neural-nav-dot">•</span>
-            <a href="#thought" className="neural-nav-link">Thought Leadership</a>
-            <span className="neural-nav-dot">•</span>
-            <a href="#community" className="neural-nav-link">Community</a>
-            <span className="neural-nav-dot">•</span>
-            <a href="#activities" className="neural-nav-link">Activities</a>
-          </nav>
+          {isMobile ? (
+            <div className="flex items-center justify-between">
+              {/* Navigation */}
+              <nav className="neural-nav font-medium flex items-center text-xs space-x-1 flex-1 justify-center">
+                <a href="#story" className="neural-nav-link text-xs px-1 py-1">Our Story</a>
+                <span className="neural-nav-dot text-xs mx-1">•</span>
+                <a href="#thought" className="neural-nav-link text-xs px-1 py-1">Thought</a>
+                <span className="neural-nav-dot text-xs mx-1">•</span>
+                <a href="#community" className="neural-nav-link text-xs px-1 py-1">Community</a>
+                <span className="neural-nav-dot text-xs mx-1">•</span>
+                <a href="#activities" className="neural-nav-link text-xs px-1 py-1">Activities</a>
+              </nav>
+              
+              {/* Mobile Menu Button (Optional - for future hamburger menu) */}
+              <div className="flex-shrink-0 w-6 h-6">
+                {/* Placeholder for future menu button */}
+              </div>
+            </div>
+          ) : (
+            /* Desktop Navigation - Right Aligned */
+            <div className="flex justify-end items-center">
+              <nav className="neural-nav font-medium flex items-center text-base">
+                <a href="#story" className="neural-nav-link px-2 py-1">Our Story</a>
+                <span className="neural-nav-dot mx-2">•</span>
+                <a href="#thought" className="neural-nav-link px-2 py-1">Thought</a>
+                <span className="neural-nav-dot mx-2">•</span>
+                <a href="#community" className="neural-nav-link px-2 py-1">Community</a>
+                <span className="neural-nav-dot mx-2">•</span>
+                <a href="#activities" className="neural-nav-link px-2 py-1">Activities</a>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center">
-        <div className="neural-container grid md:grid-cols-[1fr_1.2fr] gap-8 items-center py-14">
+      <section className={`relative flex items-center ${
+        isMobile ? 'min-h-screen py-4' : 'h-screen'
+      }`}>
+        <div className={`neural-container ${
+          isMobile 
+            ? 'flex flex-col gap-6 items-center py-4' 
+            : 'grid md:grid-cols-[1fr_1.2fr] gap-8 items-center py-14'
+        }`}>
           {/* Left Side - Text Content */}
-          <div className="flex flex-col justify-center items-start h-full ml-25">
+          <div className={`flex flex-col justify-center items-start h-full ${
+            isMobile ? 'order-1 w-full' : 'ml-25'
+          }`}>
             {/* TheNeural Logo */}
-            {/* TheNeural Logo - Absolutely positioned */}
-            <div className="absolute top-0 left-50 z-10 scale-80"> {/* 1.5x scale */}
+            <div className={`${
+              isMobile 
+                ? 'relative mb-6 scale-100' 
+                : 'absolute top-0 left-50 z-10 scale-80'
+            }`}>
               <Image
                 src="/TheNeuralwriting and logo.svg"
                 alt="The Neural"
-                width={isMobile ? 150 : 200}
-                height={isMobile ? 38 : 50}
+                width={isMobile ? 120 : 200}
+                height={isMobile ? 30 : 50}
                 className="neural-logo"
                 style={{ width: 'auto', height: 'auto' }}
               />
             </div>
             
             <AnimatedHeading 
-              className={`neural-heading leading-tight neural-accent mb-6 mt-50 ${
+              className={`neural-heading leading-tight neural-accent mb-6 ${
                 isMobile 
-                  ? 'text-[20px] sm:text-[24px]' 
-                  : 'text-[24px] sm:text-[28px] md:text-[40px]'
+                  ? 'text-[18px] leading-tight' 
+                  : 'text-[24px] sm:text-[28px] md:text-[40px] mt-50'
               }`}
               delay={0.3}
             >
@@ -174,7 +202,7 @@ export default function Home() {
             <SlideUp delay={0.6}>
               <p className={`text-[color:var(--muted)] mb-8 ${
                 isMobile 
-                  ? 'text-sm max-w-full' 
+                  ? 'text-sm leading-relaxed max-w-full' 
                   : 'text-base md:text-lg max-w-[54ch]'
               }`}>
                 Level up in AI with an exclusive platform empowering a future where AI
@@ -185,7 +213,7 @@ export default function Home() {
             
             <BounceIn delay={0.4}>
               <h2 className={`neural-accent font-semibold mb-6 ${
-                isMobile ? 'text-lg' : 'text-xl md:text-2xl'
+                isMobile ? 'text-base leading-tight' : 'text-xl md:text-2xl'
               }`}>
                 Convert your AI Ambition to Action
               </h2>
@@ -194,7 +222,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-block bg-neural-violet text-white rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 ${
-                  isMobile ? 'px-6 py-3 text-base' : 'px-8 py-4 text-lg'
+                  isMobile ? 'px-4 py-2 text-sm' : 'px-8 py-4 text-lg'
                 }`}
               >
                 Join us Activate-Nov 4,Bangalore
@@ -203,13 +231,19 @@ export default function Home() {
           </div>
           
           {/* Right Side - Image */}
-          <div className="flex justify-center items-center h-full overflow-visible">
+          <div className={`flex justify-center items-center h-full overflow-visible ${
+            isMobile ? 'order-2 w-full' : ''
+          }`}>
             <Image
               src="/hero_section_image.webp"
               alt="People collaborating with AI"
               width={2000}
               height={1333}
-              className="w-full h-auto scale-125 mt-50"
+              className={`w-full h-auto ${
+                isMobile 
+                  ? 'scale-100 max-w-sm' 
+                  : 'scale-125 mt-50'
+              }`}
               priority
             />
           </div>
@@ -217,8 +251,12 @@ export default function Home() {
       </section>
 
       {/* Story Sections */}
-      <section id="story" className="neural-container pt-90 pb-16 ml-25">
-        <div className="relative grid md:grid-cols-2 gap-16 items-stretch">
+      <section id="story" className={`neural-container ${
+        isMobile ? 'pt-12 pb-8 px-4' : 'pt-90 pb-16 ml-25'
+      }`}>
+        <div className={`relative grid ${
+          isMobile ? 'grid-cols-1 gap-12' : 'md:grid-cols-2 gap-16'
+        } items-stretch`}>
           {/* Left Story Card */}
           <SlideTowardsCenter delay={0.1}>
             <HoverCard className={`border-2 border-neural-violet bg-background flex flex-col justify-center ${
@@ -278,8 +316,12 @@ export default function Home() {
       </section>
 
       {/* Thought Leadership Section */}
-      <section id="thought" className="neural-container pt-16 pb-2">
-        <div className="grid md:grid-cols-2 gap-8 items-center ml-25">
+      <section id="thought" className={`neural-container ${
+        isMobile ? 'pt-8 pb-8 px-4' : 'pt-16 pb-2'
+      }`}>
+        <div className={`grid ${
+          isMobile ? 'grid-cols-1 gap-6' : 'md:grid-cols-2 gap-8'
+        } items-center ${isMobile ? '' : 'ml-25'}`}>
           <SlideInLeft delay={0.2}>
             <div>
                 <AnimatedHeading 
@@ -295,7 +337,7 @@ export default function Home() {
                 </AnimatedHeading>
               <SlideUp delay={0.6}>
                 <p className={`text-[color:var(--muted)] leading-relaxed mb-8 ${
-                  isMobile ? 'text-sm' : 'text-lg'
+                  isMobile ? 'text-sm leading-6' : 'text-lg'
                 }`}>
                   We bring together an enriching network of inspiring leaders from marquee brands who've achieved big things in AI. They share real-world experiences to help shape thoughts, and accelerate progress for those looking to adopt AI and innovate with AI. There's knowledge sharing through honest conversations and hard-won insights here that you won't find anywhere else.
                 </p>
@@ -323,8 +365,8 @@ export default function Home() {
 
       {/* Who is on TheNeural Section */}
       <section id="community" className={`neural-container pt-0 ${
-        isMobile ? 'pb-0' : 'pb-12'
-      } ml-25`}>
+        isMobile ? 'pb-0 px-4' : 'pb-12 ml-25'
+      }`}>
         <div className="relative flex items-center justify-center">
           <AnimatedNeuralSVG />
         </div>
@@ -332,8 +374,8 @@ export default function Home() {
 
       {/* Human Neural Network Section */}
       <section className={`neural-container ${
-        isMobile ? 'pt-4 pb-16' : 'py-16'
-      } ml-25`}>
+        isMobile ? 'pt-4 pb-16 px-4' : 'py-16 ml-25'
+      }`}>
         <SlideUp delay={0.1}>
           <h2 className={`neural-heading neural-accent text-center mb-4 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
@@ -352,20 +394,20 @@ export default function Home() {
             {/* First 3 people in a grid */}
             <div className={`grid gap-8 ${
               isMobile 
-                ? 'grid-cols-2' 
+                ? 'grid-cols-1' 
                 : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-12'
             }`}>
               {neuralNetworkProfiles.slice(0, 3).map((profile, index) => (
                 <StaggerChild key={index} direction="up">
                   <HoverCard className="text-center">
                     <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                      isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                      isMobile ? 'w-32 h-32' : 'w-64 h-64'
                     }`}>
                       <Image
                         src={profile.image}
                         alt={profile.name}
-                        width={isMobile ? 192 : 256}
-                        height={isMobile ? 192 : 256}
+                        width={isMobile ? 128 : 256}
+                        height={isMobile ? 128 : 256}
                         className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                       />
                     </div>
@@ -418,14 +460,14 @@ export default function Home() {
                   <StaggerChild key={index + 3} direction="up">
                     <HoverCard className="text-center">
                       <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                        isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                        isMobile ? 'w-32 h-32' : 'w-64 h-64'
                       }`}>
                         {profile.image ? (
                           <Image
                             src={profile.image}
                             alt={profile.name}
-                            width={isMobile ? 192 : 256}
-                            height={isMobile ? 192 : 256}
+                            width={isMobile ? 128 : 256}
+                            height={isMobile ? 128 : 256}
                             className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                           />
                         ) : (
@@ -484,8 +526,8 @@ export default function Home() {
 
       {/* Meet the Team Section */}
       <section className={`neural-container ${
-        isMobile ? 'pt-4 pb-16' : 'py-16'
-      } ml-25`}>
+        isMobile ? 'pt-4 pb-16 px-4' : 'py-16 ml-25'
+      }`}>
         <SlideUp delay={0.1}>
           <h2 className={`neural-heading neural-accent text-center mb-16 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
@@ -497,20 +539,20 @@ export default function Home() {
         <StaggerChildren staggerDelay={0.1} childDelay={0.05}>
           <div className={`grid gap-8 ${
             isMobile 
-              ? 'grid-cols-2' 
+              ? 'grid-cols-1' 
               : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-12'
           }`}>
             {/* Ranjith */}
             <StaggerChild direction="up">
               <HoverCard className="text-center">
                 <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                  isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                  isMobile ? 'w-32 h-32' : 'w-64 h-64'
                 }`}>
                   <Image
                     src="/person 1.png"
                     alt="Ranjith"
-                    width={isMobile ? 192 : 256}
-                    height={isMobile ? 192 : 256}
+                    width={isMobile ? 128 : 256}
+                    height={isMobile ? 128 : 256}
                     className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                   />
                 </div>
@@ -530,13 +572,13 @@ export default function Home() {
             <StaggerChild direction="up">
               <HoverCard className="text-center">
                 <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                  isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                  isMobile ? 'w-32 h-32' : 'w-64 h-64'
                 }`}>
                   <Image
                     src="/person 2.png"
                     alt="Swathi"
-                    width={isMobile ? 192 : 256}
-                    height={isMobile ? 192 : 256}
+                    width={isMobile ? 128 : 256}
+                    height={isMobile ? 128 : 256}
                     className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                   />
                 </div>
@@ -556,13 +598,13 @@ export default function Home() {
             <StaggerChild direction="up">
               <HoverCard className="text-center">
                 <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                  isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                  isMobile ? 'w-32 h-32' : 'w-64 h-64'
                 }`}>
                   <Image
                     src="/person 3.png"
                     alt="Samra"
-                    width={isMobile ? 192 : 256}
-                    height={isMobile ? 192 : 256}
+                    width={isMobile ? 128 : 256}
+                    height={isMobile ? 128 : 256}
                     className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                   />
                 </div>
@@ -582,13 +624,13 @@ export default function Home() {
             <StaggerChild direction="up">
               <HoverCard className="text-center">
                 <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
-                  isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                  isMobile ? 'w-32 h-32' : 'w-64 h-64'
                 }`}>
                   <Image
                     src="/person 4.png"
                     alt="Dhanush"
-                    width={isMobile ? 192 : 256}
-                    height={isMobile ? 192 : 256}
+                    width={isMobile ? 128 : 256}
+                    height={isMobile ? 128 : 256}
                     className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
                   />
                 </div>
@@ -608,7 +650,9 @@ export default function Home() {
       </section>
 
       {/* Upcoming Activities Section */}
-      <section id="activities" className="neural-container py-16 ml-25">
+      <section id="activities" className={`neural-container ${
+        isMobile ? 'py-8 px-4' : 'py-16 ml-25'
+      }`}>
         <SlideUp delay={0.2}>
           <h2 className={`neural-heading neural-accent mb-16 ${
             isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
@@ -618,11 +662,13 @@ export default function Home() {
         </SlideUp>
         
         <StaggerChildren staggerDelay={0.1} childDelay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className={`grid ${
+            isMobile ? 'grid-cols-1 gap-6' : 'grid-cols-1 md:grid-cols-2 gap-8'
+          }`}>
             {/* In-person networking events */}
             <StaggerChild direction="left">
-              <HoverCard className={`border-2 border-neural-violet p-8 bg-background ${
-                isMobile ? 'rounded-3xl' : 'rounded-[200px]'
+              <HoverCard className={`border-2 border-neural-violet bg-background ${
+                isMobile ? 'rounded-3xl p-6' : 'rounded-[200px] p-8'
               }`}>
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -646,8 +692,8 @@ export default function Home() {
 
             {/* Online events */}
             <StaggerChild direction="right">
-              <HoverCard className={`border-2 border-neural-violet p-8 bg-background ${
-                isMobile ? 'rounded-3xl' : 'rounded-[200px]'
+              <HoverCard className={`border-2 border-neural-violet bg-background ${
+                isMobile ? 'rounded-3xl p-6' : 'rounded-[200px] p-8'
               }`}>
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -671,8 +717,8 @@ export default function Home() {
 
             {/* Podcasts */}
             <StaggerChild direction="left">
-              <HoverCard className={`border-2 border-neural-violet p-8 bg-background ${
-                isMobile ? 'rounded-3xl' : 'rounded-[200px]'
+              <HoverCard className={`border-2 border-neural-violet bg-background ${
+                isMobile ? 'rounded-3xl p-6' : 'rounded-[200px] p-8'
               }`}>
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -696,8 +742,8 @@ export default function Home() {
 
             {/* Multi-track conferences */}
             <StaggerChild direction="right">
-              <HoverCard className={`border-2 border-neural-violet p-8 bg-background ${
-                isMobile ? 'rounded-3xl' : 'rounded-[200px]'
+              <HoverCard className={`border-2 border-neural-violet bg-background ${
+                isMobile ? 'rounded-3xl p-6' : 'rounded-[200px] p-8'
               }`}>
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -881,7 +927,7 @@ function AnimatedNeuralSVG() {
         height={1488}
         className={`w-full h-auto max-w-none origin-center ${
           isMobile 
-            ? 'scale-[2.0]' 
+            ? 'scale-[1.5]' 
             : 'scale-[1.2] md:scale-[1.4] lg:scale-[1.6]'
         }`}
         priority

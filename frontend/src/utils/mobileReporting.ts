@@ -12,23 +12,15 @@ export interface MobileIssueDetails {
 
 export async function reportMobileIssue(details: MobileIssueDetails): Promise<boolean> {
   try {
-    const payload = {
+    // Just log the mobile issue for now
+    console.log('Mobile issue detected:', {
       ...details,
       timestamp: new Date().toISOString(),
       url: typeof window !== 'undefined' ? window.location.href : 'unknown'
-    };
-
-    const response = await fetch('/api/webhooks/mobile-issue', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // Note: Signature should be computed server-side for security
-        // This is a simplified version for client-side reporting
-      },
-      body: JSON.stringify(payload),
     });
-
-    return response.ok;
+    
+    // Return true to indicate the issue was "reported" (logged)
+    return true;
   } catch (error) {
     console.error('Failed to report mobile issue:', error);
     return false;
