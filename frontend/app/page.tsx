@@ -927,7 +927,7 @@ function AnimatedNeuralSVG() {
         height={1488}
         className={`w-full h-auto max-w-none origin-center ${
           isMobile 
-            ? 'scale-[1.5]' 
+            ? 'scale-[2.0]' 
             : 'scale-[1.2] md:scale-[1.4] lg:scale-[1.6]'
         }`}
         priority
