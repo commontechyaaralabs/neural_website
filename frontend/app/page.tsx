@@ -269,6 +269,78 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Human Neural Network Section */}
+      <section className={`neural-container ${
+        isMobile ? 'pt-4 pb-16' : 'py-16'
+      }`}>
+        <SlideUp delay={0.1}>
+          <h2 className={`neural-heading neural-accent text-center mb-16 ${
+            isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
+          }`}>
+            Human Neural Network
+          </h2>
+        </SlideUp>
+        
+        <StaggerChildren staggerDelay={0.1} childDelay={0.05}>
+          <div className={`grid gap-8 ${
+            isMobile 
+              ? 'grid-cols-2' 
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-12'
+          }`}>
+            {neuralNetworkProfiles.map((profile, index) => (
+              <StaggerChild key={index} direction="up">
+                <HoverCard className="text-center">
+                  <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
+                    isMobile ? 'w-48 h-48' : 'w-64 h-64'
+                  }`}>
+                    <Image
+                      src={profile.image}
+                      alt={profile.name}
+                      width={isMobile ? 192 : 256}
+                      height={isMobile ? 192 : 256}
+                      className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
+                    />
+                  </div>
+                  <h3 className={`font-bold neural-accent mb-2 ${
+                    isMobile ? 'text-sm' : 'text-2xl'
+                  }`}>{profile.name}</h3>
+                  <p className={`text-[color:var(--muted)] leading-relaxed mb-6 ${
+                    isMobile ? 'text-xs' : 'text-sm'
+                  }`}>
+                    {profile.designation}
+                  </p>
+                  <a
+                    href={profile.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 neural-accent hover:text-neural-green transition-colors duration-300 ${
+                      isMobile ? 'text-xs' : 'text-base'
+                    }`}
+                  >
+                    <svg 
+                      className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'}`} 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    VIEW PROFILE
+                    <svg 
+                      className={`${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </HoverCard>
+              </StaggerChild>
+            ))}
+          </div>
+        </StaggerChildren>
+      </section>
+
       {/* Meet the Team Section */}
       <section className={`neural-container ${
         isMobile ? 'pt-4 pb-16' : 'py-16'
@@ -586,6 +658,41 @@ export default function Home() {
     </div>
   );
 }
+
+// Human Neural Network profiles data
+const neuralNetworkProfiles = [
+  {
+    name: "Ramasubramanian Sundararajan",
+    designation: "Head, Product R&D at SOLUS.ai",
+    image: "/nn1.jpeg",
+    linkedin: "https://www.linkedin.com/in/ramasubramanian-sundararajan/"
+  },
+  {
+    name: "Bharani Subramaniam",
+    designation: "CTO India & Middle East at Thoughtworks",
+    image: "/nn2.jpeg",
+    linkedin: "https://www.linkedin.com/in/bharanisubramaniam/"
+  },
+  {
+    name: "Venkataraghavan Srinivasan",
+    designation: "Language Engineering at Amazon",
+    image: "/nn3.jpeg",
+    linkedin: "https://www.linkedin.com/in/venkataraghavansrinivasan/"
+  },
+  {
+    name: "Rajesh Chandran",
+    designation: "Vice President and Head Product at Tata Communications",
+    image: "/nn4.jpg",
+    linkedin: "https://www.linkedin.com/in/rchandran/"
+  },
+  {
+    name: "Karthik Sivakumar",
+    designation: "Digital Transformation Head at Tata Consultancy Services",
+    image: "/nn5.jpeg",
+    linkedin: "https://www.linkedin.com/in/karthick-sivakumar7/"
+  }
+];
+
 
 // Neural SVG Component
 function AnimatedNeuralSVG() {

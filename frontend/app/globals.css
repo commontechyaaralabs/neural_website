@@ -84,11 +84,24 @@ html, body {
 /* Card hover enhancements */
 .hover-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .hover-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(184, 107, 221, 0.2);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(184, 107, 221, 0.2);
+}
+
+/* Ensure hover cards don't get clipped */
+.hover-card {
+  position: relative;
+  z-index: 10;
+}
+
+/* Add extra padding to containers with hover cards to prevent clipping */
+.hover-card-container {
+  padding: 1rem;
+  overflow: visible;
 }
 
 /* Button enhancements */
@@ -235,5 +248,11 @@ header {
   
   .hover-card:hover {
     transform: none;
+    box-shadow: none;
+  }
+  
+  /* Ensure proper spacing on mobile for hover cards */
+  .hover-card-container {
+    padding: 0.5rem;
   }
 }
