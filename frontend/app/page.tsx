@@ -888,8 +888,8 @@ const neuralNetworkProfiles = [
     linkedin: "https://www.linkedin.com/in/ramasubramanian-sundararajan/"
   },
   {
-    name: "Bharani Subramaniam",
-    designation: "CTO India & Middle East at Thoughtworks",
+    name: "Hariharasudhan Ramani",
+    designation: "Vice President of Global Sales & GTM at Applied computing",
     image: "/nn2.jpeg",
     linkedin: "https://www.linkedin.com/in/bharanisubramaniam/"
   },
@@ -908,7 +908,7 @@ const neuralNetworkProfiles = [
   {
     name: "Karthik Sivakumar",
     designation: "Principal Engineer at Cisco Inc",
-    image: "",
+    image: "/nn5.jpg",
     linkedin: "https://www.linkedin.com/in/kaarthiks/"
   },
 ];
