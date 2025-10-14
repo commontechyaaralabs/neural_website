@@ -891,7 +891,7 @@ const neuralNetworkProfiles = [
     name: "Hariharasudhan Ramani",
     designation: "Vice President of Global Sales & GTM at Applied computing",
     image: "/nn2.jpeg",
-    linkedin: "https://www.linkedin.com/in/bharanisubramaniam/"
+    linkedin: "https://www.linkedin.com/in/hramani/"
   },
   {
     name: "Venkataraghavan Srinivasan",
