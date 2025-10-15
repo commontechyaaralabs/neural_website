@@ -897,7 +897,7 @@ const neuralNetworkProfiles = [
     name: "Karthik Subramanian",
     designation: "Group CTO at Global Fashion Group & Zalora",
     image: "/nn1_1.jpg",
-    linkedin: "https://www.linkedin.com/in/karthiksubramanian/"
+    linkedin: "https://www.linkedin.com/in/kkarthiks/"
   },
   {
     name: "Ramasubramanian Sundararajan",
