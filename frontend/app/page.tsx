@@ -391,7 +391,7 @@ export default function Home() {
         
         <StaggerChildren staggerDelay={0.1} childDelay={0.05}>
           <div className="space-y-8">
-            {/* First 3 people in a grid */}
+            {/* First row - 3 people */}
             <div className={`grid gap-8 ${
               isMobile 
                 ? 'grid-cols-1' 
@@ -403,13 +403,25 @@ export default function Home() {
                     <div className={`relative mx-auto mb-8 rounded-full overflow-hidden ${
                       isMobile ? 'w-32 h-32' : 'w-64 h-64'
                     }`}>
-                      <Image
-                        src={profile.image}
-                        alt={profile.name}
-                        width={isMobile ? 128 : 256}
-                        height={isMobile ? 128 : 256}
-                        className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
-                      />
+                      {profile.image ? (
+                        <Image
+                          src={profile.image}
+                          alt={profile.name}
+                          width={isMobile ? 128 : 256}
+                          height={isMobile ? 128 : 256}
+                          className="w-full h-full object-cover rounded-full shadow-2xl shadow-black/50"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-200 rounded-full flex items-center justify-center">
+                          <svg 
+                            className={`${isMobile ? 'w-16 h-16' : 'w-20 h-20'} text-gray-400`} 
+                            fill="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                          </svg>
+                        </div>
+                      )}
                     </div>
                     <h3 className={`font-bold neural-accent mb-2 ${
                       isMobile ? 'text-sm' : 'text-2xl'
@@ -449,12 +461,12 @@ export default function Home() {
               ))}
             </div>
             
-            {/* Remaining people (4th and 5th) in a row */}
+            {/* Second row - remaining 3 people */}
             {neuralNetworkProfiles.length > 3 && (
               <div className={`grid gap-8 ${
                 isMobile 
                   ? 'grid-cols-1' 
-                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-12'
+                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-12'
               }`}>
                 {neuralNetworkProfiles.slice(3).map((profile, index) => (
                   <StaggerChild key={index + 3} direction="up">
@@ -881,6 +893,12 @@ export default function Home() {
 
 // Human Neural Network profiles data
 const neuralNetworkProfiles = [
+  {
+    name: "Karthik Subramanian",
+    designation: "Group CTO at Global Fashion Group & Zalora",
+    image: "/nn1_1.jpg",
+    linkedin: "https://www.linkedin.com/in/karthiksubramanian/"
+  },
   {
     name: "Ramasubramanian Sundararajan",
     designation: "Head, Product R&D at SOLUS.ai",
