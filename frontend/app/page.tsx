@@ -217,16 +217,6 @@ export default function Home() {
               }`}>
                 Convert your AI Ambition to Action
               </h2>
-              <a
-                href="https://activate25.theneural.ai/TheNeural"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-block bg-neural-violet text-white rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 ${
-                  isMobile ? 'px-4 py-2 text-sm' : 'px-8 py-4 text-lg'
-                }`}
-              >
-                Join us Activate-Nov 4,Bangalore
-              </a>
             </BounceIn>
           </div>
           
